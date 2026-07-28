@@ -786,3 +786,176 @@ button:active{
     color:var(--text-muted);
 
 }
+/* ==========================================================
+   BUILD 5A
+   SIDEBAR PRO
+========================================================== */
+
+/* ---------- Sidebar ---------- */
+
+.sidebar{
+
+    transition:
+        width .35s ease,
+        transform .35s ease,
+        box-shadow .35s ease;
+
+    z-index:1000;
+
+}
+
+/* ---------- Logo ---------- */
+
+.logo{
+
+    padding-bottom:22px;
+
+    margin-bottom:28px;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+}
+
+.logo span:first-child{
+
+    font-size:1.9rem;
+
+}
+
+/* ---------- Navigation ---------- */
+
+.sidebar nav{
+
+    gap:12px;
+
+}
+
+.sidebar nav a{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+/* Hover Glow */
+
+.sidebar nav a::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:linear-gradient(
+        135deg,
+        rgba(79,141,247,.15),
+        transparent
+    );
+
+    opacity:0;
+
+    transition:.25s;
+
+}
+
+.sidebar nav a:hover::before{
+
+    opacity:1;
+
+}
+
+.sidebar nav a.active{
+
+    box-shadow:
+        0 0 20px rgba(79,141,247,.35);
+
+}
+
+/* Linke Akzentleiste */
+
+.sidebar nav a.active::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:-18px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    width:4px;
+
+    height:30px;
+
+    border-radius:999px;
+
+    background:var(--accent-light);
+
+}
+
+/* ---------- Menübutton ---------- */
+
+#menuButton{
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+
+}
+
+#menuButton:hover{
+
+    transform:rotate(90deg);
+
+    box-shadow:
+        0 0 18px rgba(79,141,247,.45);
+
+}
+
+/* ---------- Logo Text ---------- */
+
+.logo-text{
+
+    transition:.25s;
+
+}
+
+/* ---------- Eingeklappt ---------- */
+
+.sidebar.collapsed{
+
+    width:78px;
+
+}
+
+.sidebar.collapsed .logo{
+
+    justify-content:center;
+
+}
+
+.sidebar.collapsed .logo-text{
+
+    opacity:0;
+
+    width:0;
+
+    overflow:hidden;
+
+}
+
+.sidebar.collapsed nav a{
+
+    justify-content:center;
+
+}
+
+.sidebar.collapsed nav a span{
+
+    display:none;
+
+}
