@@ -35,3 +35,44 @@ document.getElementById("addTask").onclick=async()=>{
 
 loadBudget();
 loadTasks();
+/* ==========================================================
+   SPRINT 2A
+   SIDEBAR
+========================================================== */
+
+const sidebar = document.getElementById("sidebar");
+const menuButton = document.getElementById("menuButton");
+const mobileOverlay = document.getElementById("mobileOverlay");
+
+menuButton.addEventListener("click", () => {
+
+    if (window.innerWidth <= 900) {
+
+        sidebar.classList.toggle("open");
+        mobileOverlay.classList.toggle("active");
+
+    } else {
+
+        sidebar.classList.toggle("collapsed");
+
+    }
+
+});
+
+mobileOverlay.addEventListener("click", () => {
+
+    sidebar.classList.remove("open");
+    mobileOverlay.classList.remove("active");
+
+});
+
+window.addEventListener("resize", () => {
+
+    if (window.innerWidth > 900) {
+
+        sidebar.classList.remove("open");
+        mobileOverlay.classList.remove("active");
+
+    }
+
+});
