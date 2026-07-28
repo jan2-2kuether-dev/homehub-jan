@@ -1,159 +1,163 @@
-import {db} from "./firebase.js";
-import {collection,addDoc,getDocs,deleteDoc,doc,setDoc,getDoc} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+import { db } from "./firebase.js";
+import {
+  collection,
+  addDoc,
+  getDocs,
+  deleteDoc,
+  doc,
+  setDoc,
+  getDoc
+} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 
-const budget=document.getElementById("budget");
-const budgetValue=document.getElementById("budgetValue");
-const taskInput=document.getElementById("taskInput");
-const taskList=document.getElementById("taskList");
-
-function updateDashboard(){
-
-    const openTasks = taskList.children.length;
-
-    document.getElementById("taskCount").textContent = openTasks;
-
-    const completedTasks =
-        document.getElementById("completedTaskList").children.length;
-
-    document.getElementById("completedCount").textContent = completedTasks;
-
-    const total = openTasks + completedTasks;
-
-    const progress = total === 0
-        ? 0
-        : Math.round((completedTasks / total) * 100);
-
-    document.getElementById("progressFill").style.width = progress + "%";
-
-    document.getElementById("progressText").textContent =
-        progress + " % erledigt";
-
-}
-
-    const open = taskList.children.length;
-
-    document.getElementById("taskCount").textContent = open;
-
-    document.getElementById("completedCount").textContent = "0";
-
-    document.getElementById("progressFill").style.width = "0%";
-
-    document.getElementById("progressText").textContent = "0 % erledigt";
-
-}
-async function loadBudget(){
- const ref=doc(db,"settings","budget");
- const s=await getDoc(ref);
- if(s.exists()){budget.value=s.data().value;budgetValue.textContent=s.data().value+" €";}
-}
-document.getElementById("saveBudget").onclick=async()=>{
- await setDoc(doc(db,"settings","budget"),{value:Number(budget.value)});
- budgetValue.textContent=budget.value+" €";
-};
-function updateDashboard(){
-
-    const open = taskList.children.length;
-
-    document.getElementById("taskCount").textContent = open;
-
-    document.getElementById("completedCount").textContent = "0";
-
-    document.getElementById("progressFill").style.width = "0%";
-
-    document.getElementById("progressText").textContent = "0 % erledigt";
-
-}
-
-async function loadTasks(){
- taskList.innerHTML="";
- const snap=await getDocs(collection(db,"tasks"));
- snap.forEach(d=>{
-   const li=document.createElement("li");
-   li.innerHTML=`<span>${d.data().title}</span><button class="deleteBtn">🗑️</button>`;
-   li.querySelector("button").onclick=async()=>{await deleteDoc(doc(db,"tasks",d.id));loadTasks();};
-   taskList.appendChild(li);
- });
- updateDashboard();
-}
-document.getElementById("addTask").onclick=async()=>{
- if(!taskInput.value.trim())return;
- await addDoc(collection(db,"tasks"),{title:taskInput.value.trim()});
- taskInput.value="";
- loadTasks();
-};
-
-loadBudget();
-loadTasks();
 /* ==========================================================
-   SPRINT 2A
-   SIDEBAR
+   DOM
 ========================================================== */
 
-const sidebar = document.getElementById("sidebar");
-const menuButton = document.getElementById("menuButton");
-const mobileOverlay = document.getElementById("mobileOverlay");
+const budget = document.getElementById("budget");
+const budgetValue = document.getElementById("budgetValue");
 
-menuButton.addEventListener("click", () => {
+const taskInput = document.getElementById("taskInput");
+const taskList = document.getElementById("taskList");
+const completedTaskList = document.getElementById("completedTaskList");
 
-    if (window.innerWidth <= 900) {
+const taskCount = document.getElementById("taskCount");
+const completedCount = document.getElementById("completedCount");
+const progressFill = document.getElementById("progressFill");
+const progressText = document.getElementById("progressText");
 
-        sidebar.classList.toggle("open");
-        mobileOverlay.classList.toggle("active");
-
-    } else {
-
-        sidebar.classList.toggle("collapsed");
-
-    }
-
-});
-
-mobileOverlay.addEventListener("click", () => {
-
-    sidebar.classList.remove("open");
-    mobileOverlay.classList.remove("active");
-
-});
-
-window.addEventListener("resize", () => {
-
-    if (window.innerWidth > 900) {
-
-        sidebar.classList.remove("open");
-        mobileOverlay.classList.remove("active");
-
-    }
-
-});
 /* ==========================================================
-   SPRINT 2A
-   SCHNELLAKTIONEN
+   DASHBOARD
 ========================================================== */
 
-const quickButtons = document.querySelectorAll(".card button");
+function updateDashboard() {
 
-quickButtons.forEach(button => {
+    const open = taskList.children.length;
+    const completed = completedTaskList.children.length;
 
-    button.addEventListener("click", () => {
+    taskCount.textContent = open;
+    completedCount.textContent = completed;
 
-        const text = button.textContent.trim();
+    const total = open + completed;
 
-        switch (text) {
+    const percent =
+        total === 0
+            ? 0
+            : Math.round((completed / total) * 100);
 
-            case "🧹 Wohnung aufräumen":
-                document.getElementById("taskInput").value = "Wohnung aufräumen";
-                break;
+    progressFill.style.width = percent + "%";
+    progressText.textContent = percent + " % erledigt";
 
-            case "🛒 Einkauf planen":
-                document.getElementById("taskInput").value = "Einkauf planen";
-                break;
+}
 
-            case "💡 Budget prüfen":
-                document.getElementById("budget").focus();
-                break;
+/* ==========================================================
+   BUDGET
+========================================================== */
+
+async function loadBudget() {
+
+    const ref = doc(db, "settings", "budget");
+
+    const snap = await getDoc(ref);
+
+    if (!snap.exists()) return;
+
+    budget.value = snap.data().value;
+    budgetValue.textContent = snap.data().value + " €";
+
+}
+
+async function saveBudget() {
+
+    const value = Number(budget.value);
+
+    await setDoc(doc(db, "settings", "budget"), {
+        value
+    });
+
+    budgetValue.textContent = value + " €";
+
+}
+
+document
+    .getElementById("saveBudget")
+    .addEventListener("click", saveBudget);
+
+/* ==========================================================
+   TASKS
+========================================================== */
+
+async function loadTasks() {
+
+    taskList.innerHTML = "";
+    completedTaskList.innerHTML = "";
+
+    const snapshot =
+        await getDocs(collection(db, "tasks"));
+
+    snapshot.forEach(task => {
+
+        const data = task.data();
+
+        const li = document.createElement("li");
+
+        li.innerHTML = `
+            <span>${data.title}</span>
+            <button class="deleteBtn">🗑️</button>
+        `;
+
+        li.querySelector(".deleteBtn")
+            .addEventListener("click", async () => {
+
+                await deleteDoc(
+                    doc(db, "tasks", task.id)
+                );
+
+                loadTasks();
+
+            });
+
+        if (data.completed) {
+
+            completedTaskList.appendChild(li);
+
+        } else {
+
+            taskList.appendChild(li);
 
         }
 
     });
 
-});
+    updateDashboard();
+
+}
+
+async function addTask() {
+
+    const title = taskInput.value.trim();
+
+    if (!title) return;
+
+    await addDoc(collection(db, "tasks"), {
+
+        title,
+        completed: false
+
+    });
+
+    taskInput.value = "";
+
+    loadTasks();
+
+}
+
+document
+    .getElementById("addTask")
+    .addEventListener("click", addTask);
+
+/* ==========================================================
+   START
+========================================================== */
+
+loadBudget();
+loadTasks();
