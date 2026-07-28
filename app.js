@@ -103,7 +103,10 @@ async function loadTasks() {
 
         li.innerHTML = `
             <span>${data.title}</span>
-            <button class="deleteBtn">🗑️</button>
+            <button class="deleteBtn"> 
+            ${data.completed ? "↺" : "☑️"}
+
+    </button>
         `;
 
         li.querySelector(".deleteBtn")
