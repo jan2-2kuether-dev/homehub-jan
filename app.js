@@ -109,8 +109,19 @@ async function loadTasks() {
     </button>
         `;
 
-        li.querySelector(".deleteBtn")
-            .addEventListener("click", async () => {
+      const actionButton = li.querySelector(".deleteBtn");
+
+if (data.completed) {
+
+    actionButton.style.background = "#4f8df7";
+
+} else {
+
+    actionButton.style.background = "#36c275";
+
+}
+
+actionButton.addEventListener("click", async () => {
 
         await updateDoc(
             doc(db, "tasks", task.id),
