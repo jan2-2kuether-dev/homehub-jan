@@ -4,6 +4,7 @@ import {
   addDoc,
   getDocs,
   deleteDoc,
+  updateDoc,
   doc,
   setDoc,
   getDoc
@@ -108,11 +109,14 @@ async function loadTasks() {
         li.querySelector(".deleteBtn")
             .addEventListener("click", async () => {
 
-                await deleteDoc(
-                    doc(db, "tasks", task.id)
-                );
+        await updateDoc(
+            doc(db, "tasks", task.id),
+            {
+                completed: !data.completed
+            }
+        );
 
-                loadTasks();
+        await loadTasks();
 
             });
 
