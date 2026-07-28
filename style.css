@@ -1,89 +1,23 @@
-
-/* ===================================================
-   HomeHub Sprint 1B.2a-I
-   Sidebar Upgrade
-   Diese Regeln am ENDE deiner style.css einfügen
-=================================================== */
-
-.sidebar{
-    background:rgba(23,28,37,.95);
-    backdrop-filter:blur(22px);
-    border-right:1px solid rgba(255,255,255,.08);
-    box-shadow:8px 0 30px rgba(0,0,0,.35);
-    transition:width .35s ease,left .35s ease;
-}
-
-.logo{
-    padding-bottom:20px;
-    border-bottom:1px solid rgba(255,255,255,.06);
-    margin-bottom:24px;
-}
-
-.logo span:first-child{
-    font-size:1.8rem;
-}
-
-.sidebar nav{
-    gap:12px;
-}
-
-.sidebar nav a{
-    display:flex;
-    align-items:center;
-    gap:14px;
-    min-height:52px;
-    border-radius:14px;
-    color:#c4cede;
-    transition:all .25s ease;
-    position:relative;
-}
-
-.sidebar nav a:hover{
-    transform:translateX(4px);
-    background:rgba(79,141,247,.14);
-    color:#fff;
-}
-
-.sidebar nav a.active{
-    color:#fff;
-    background:linear-gradient(135deg,#4f8df7,#69a9ff);
-    box-shadow:
-        0 0 18px rgba(79,141,247,.45),
-        inset 0 1px 0 rgba(255,255,255,.15);
-}
-
-.sidebar nav a.active::before{
-    content:"";
-    position:absolute;
-    left:-18px;
-    width:4px;
-    height:28px;
-    border-radius:999px;
-    background:#69a9ff;
-}
-
-.sidebar.collapsed nav a{
-    justify-content:center;
-    padding:0;
-}
-
-.sidebar.collapsed nav a span{
-    display:none;
-}
-
-.sidebar.collapsed .logo{
-    justify-content:center;
-}
-
-.sidebar.collapsed .logo span:last-child{
-    display:none;
-}
-
-#menuButton{
-    transition:transform .2s ease, box-shadow .2s ease;
-}
-
-#menuButton:hover{
-    transform:rotate(90deg);
-    box-shadow:0 0 18px rgba(79,141,247,.5);
-}
+/* HomeHub v0.2 */
+:root{--bg:#12151c;--panel:rgba(34,40,52,.72);--panel2:rgba(47,56,72,.82);--accent:#3b82f6;--accent2:#60a5fa;--text:#fff;--muted:#b7c1d1;--danger:#d64545;--radius:18px}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Inter,Segoe UI,Arial,sans-serif;background:radial-gradient(circle at top right,#20304d 0,#12151c 40%),linear-gradient(#12151c,#171b23);color:var(--text);min-height:100vh}
+header{padding:32px;text-align:center;background:rgba(18,21,28,.65);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.08);position:sticky;top:0;z-index:10}
+header h1{font-size:2.2rem}header p{margin-top:8px;color:var(--muted)}
+main{max-width:1200px;margin:32px auto;padding:0 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px}
+.card{background:var(--panel);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:22px;box-shadow:0 10px 30px rgba(0,0,0,.35);transition:.25s}
+.card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(0,0,0,.45)}
+.card h2{margin-bottom:18px;color:var(--accent2)}
+input{width:100%;padding:14px;margin:10px 0;border:none;border-radius:12px;background:#1d2330;color:#fff;font-size:15px;outline:none}
+input:focus{box-shadow:0 0 0 3px rgba(59,130,246,.35)}
+button{width:100%;padding:14px;border:none;border-radius:12px;cursor:pointer;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-weight:600;transition:.2s}
+button:hover{transform:translateY(-2px);filter:brightness(1.08)}
+ul{list-style:none;margin-top:10px}
+li{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 16px;margin:12px 0;background:var(--panel2);border-radius:14px;border:1px solid rgba(255,255,255,.06);transition:.2s}
+li:hover{transform:translateX(4px)}
+.deleteBtn{width:auto;padding:10px 14px;background:var(--danger)}
+#budgetValue{font-weight:700;color:var(--accent2)}
+footer{text-align:center;padding:30px;color:var(--muted)}
+::-webkit-scrollbar{width:10px}::-webkit-scrollbar-thumb{background:#3b82f6;border-radius:20px}
+@media(max-width:768px){header{padding:22px}header h1{font-size:1.8rem}main{grid-template-columns:1fr;padding:16px;margin:20px auto;gap:18px}.card{padding:18px}button,input{font-size:16px}}
