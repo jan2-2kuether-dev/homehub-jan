@@ -1,1 +1,212 @@
-/* HomeHub UI 2.0 */
+/* ==========================================================
+   HomeHub UI 2.0
+   BUILD 1
+   Reset + Theme
+========================================================== */
+
+:root{
+
+    /* Colors */
+
+    --bg:#12161d;
+    --surface:#1b212c;
+    --surface-light:#252d39;
+
+    --card:rgba(34,40,53,.82);
+
+    --accent:#4f8df7;
+    --accent-light:#69a9ff;
+
+    --text:#f5f7fb;
+    --text-muted:#aeb8c8;
+
+    --success:#3dc977;
+    --warning:#f6b944;
+    --danger:#ff5b6e;
+
+    --border:rgba(255,255,255,.08);
+
+    --shadow:
+        0 12px 30px rgba(0,0,0,.35);
+
+    --radius:18px;
+
+    --transition:.25s ease;
+
+    --sidebar-width:260px;
+
+}
+
+/* ==========================
+   RESET
+========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    min-height:100vh;
+
+    background:linear-gradient(
+        180deg,
+        #12161d,
+        #171c25
+    );
+
+    color:var(--text);
+
+    font-family:
+        Inter,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    line-height:1.5;
+
+    overflow-x:hidden;
+
+}
+
+/* ==========================
+   TYPOGRAPHY
+========================== */
+
+h1{
+
+    font-size:2.3rem;
+    font-weight:700;
+    color:var(--text);
+
+}
+
+h2{
+
+    font-size:1.55rem;
+    font-weight:700;
+    color:var(--accent-light);
+
+}
+
+h3{
+
+    font-size:1.1rem;
+    font-weight:600;
+
+}
+
+p{
+
+    color:var(--text-muted);
+
+}
+
+a{
+
+    color:inherit;
+    text-decoration:none;
+
+}
+
+ul{
+
+    list-style:none;
+
+}
+
+/* ==========================
+   FORM BASICS
+========================== */
+
+button{
+
+    font:inherit;
+
+    border:none;
+
+    cursor:pointer;
+
+    transition:var(--transition);
+
+}
+
+input,
+select,
+textarea{
+
+    font:inherit;
+
+    outline:none;
+
+}
+
+/* ==========================
+   SCROLLBAR
+========================== */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#181d24;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#394252;
+
+    border-radius:999px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:var(--accent);
+
+}
+
+/* ==========================
+   UTILITIES
+========================== */
+
+.hidden{
+
+    display:none;
+
+}
+
+.center{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+.glass{
+
+    background:var(--card);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid var(--border);
+
+    border-radius:var(--radius);
+
+    box-shadow:var(--shadow);
+
+}
