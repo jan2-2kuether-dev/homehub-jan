@@ -76,3 +76,35 @@ window.addEventListener("resize", () => {
     }
 
 });
+/* ==========================================================
+   SPRINT 2A
+   SCHNELLAKTIONEN
+========================================================== */
+
+const quickButtons = document.querySelectorAll(".card button");
+
+quickButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        const text = button.textContent.trim();
+
+        switch (text) {
+
+            case "🧹 Wohnung aufräumen":
+                document.getElementById("taskInput").value = "Wohnung aufräumen";
+                break;
+
+            case "🛒 Einkauf planen":
+                document.getElementById("taskInput").value = "Einkauf planen";
+                break;
+
+            case "💡 Budget prüfen":
+                document.getElementById("budget").focus();
+                break;
+
+        }
+
+    });
+
+});
