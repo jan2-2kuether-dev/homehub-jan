@@ -552,6 +552,44 @@ select{
 
 }
 
+select{
+
+    appearance:none;
+
+    cursor:pointer;
+
+    width:100%;
+
+    padding:15px 18px;
+
+    background:rgba(255,255,255,.04);
+
+    border:1px solid var(--border);
+
+    border-radius:14px;
+
+    color:var(--text);
+
+    transition:var(--transition);
+
+}
+
+select option{
+
+    background:#1f2430;
+
+    color:#ffffff;
+
+}
+
+select option:checked{
+
+    background:var(--accent);
+
+    color:#ffffff;
+
+}
+
 input::placeholder{
 
     color:#8f99aa;
