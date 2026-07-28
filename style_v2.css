@@ -510,3 +510,151 @@ body{
     transition:width .4s ease;
 
 }
+/* ==========================================================
+   BUILD 4A
+   FORMS + BUTTONS + BUDGET
+========================================================== */
+
+/* ---------- Karten ---------- */
+
+.card{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+/* ---------- Labels ---------- */
+
+label{
+    font-size:.95rem;
+    font-weight:600;
+    color:var(--text-muted);
+}
+
+/* ---------- Eingabefelder ---------- */
+
+input,
+select{
+
+    width:100%;
+
+    padding:15px 18px;
+
+    background:rgba(255,255,255,.04);
+
+    border:1px solid var(--border);
+
+    border-radius:14px;
+
+    color:var(--text);
+
+    transition:var(--transition);
+
+}
+
+input::placeholder{
+
+    color:#8f99aa;
+
+}
+
+input:hover,
+select:hover{
+
+    border-color:rgba(79,141,247,.35);
+
+}
+
+input:focus,
+select:focus{
+
+    border-color:var(--accent);
+
+    box-shadow:
+        0 0 0 4px rgba(79,141,247,.18);
+
+}
+
+/* ---------- Dropdown ---------- */
+
+select{
+
+    appearance:none;
+
+    cursor:pointer;
+
+}
+
+/* ---------- Buttons ---------- */
+
+button{
+
+    padding:15px 18px;
+
+    border-radius:14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--accent),
+            var(--accent-light)
+        );
+
+    color:#fff;
+
+    font-weight:700;
+
+    letter-spacing:.2px;
+
+    transition:all .25s ease;
+
+}
+
+button:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 10px 24px rgba(79,141,247,.35);
+
+}
+
+button:active{
+
+    transform:scale(.98);
+
+}
+
+/* ---------- Budgetfeld ---------- */
+
+#budget{
+
+    font-size:1.15rem;
+
+    font-weight:600;
+
+}
+
+/* ---------- Speichern ---------- */
+
+#saveBudget{
+
+    margin-top:4px;
+
+}
+
+/* ---------- Aufgabe ---------- */
+
+#taskInput{
+
+    font-size:1rem;
+
+}
+
+/* ---------- Abstand ---------- */
+
+.card button+button{
+
+    margin-top:10px;
+
+}
