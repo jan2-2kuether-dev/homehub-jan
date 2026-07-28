@@ -2,65 +2,112 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>HomeHub Jan v0.3</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HomeHub 1.0</title>
 <link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<header>
-  <h1>🏡 HomeHub Jan</h1>
-  <p>Deine Wohnungszentrale</p>
+<aside class="sidebar" id="sidebar">
+    <div class="logo">
+        <span class="logo-icon">🏠</span>
+        <span class="logo-text">HomeHub</span>
+    </div>
+
+    <nav>
+        <a href="#" class="active">🏠 Dashboard</a>
+        <a href="#">📋 Aufgaben</a>
+        <a href="#">💰 Budget</a>
+        <a href="#">⚙ Einstellungen</a>
+    </nav>
+</aside>
+
+<div class="content">
+
+<header class="topbar">
+    <button id="menuButton">☰</button>
+
+    <div>
+        <h1>Willkommen, Jan 👋</h1>
+        <p>Deine persönliche Wohnungszentrale</p>
+    </div>
 </header>
 
-<main>
+<section class="dashboard">
 
-<section class="card" style="grid-column:1/-1;">
-  <h2>Dashboard</h2>
-  <div class="dashboard">
-    <div class="card">
-      <h3>💰 Budget</h3>
-      <p><span id="budgetValue">0 €</span></p>
-    </div>
-    <div class="card">
-      <h3>📋 Aufgaben</h3>
-      <p id="taskCounter">Wird geladen…</p>
-    </div>
-    <div class="card">
-      <h3>🚀 Status</h3>
-      <p>HomeHub v0.3</p>
-    </div>
-  </div>
+<div class="stat-card">
+    <h3>💰 Budget</h3>
+    <span id="budgetValue">0 €</span>
+</div>
+
+<div class="stat-card">
+    <h3>📋 Aufgaben</h3>
+    <span id="taskCounter">0</span>
+</div>
+
+<div class="stat-card">
+    <h3>✅ Erledigt</h3>
+    <span id="doneCounter">0</span>
+</div>
+
+<div class="stat-card">
+    <h3>📈 Fortschritt</h3>
+    <span>0%</span>
+</div>
+
 </section>
 
-<section class="card">
+<section class="grid">
+
+<div class="card">
+
 <h2>Budget verwalten</h2>
-<input id="budget" type="number" placeholder="Budget">
-<button id="saveBudget">Budget speichern</button>
-</section>
 
-<section class="card">
+<input id="budget" type="number" placeholder="Budget eingeben">
+
+<button id="saveBudget">
+Budget speichern
+</button>
+
+</div>
+
+<div class="card">
+
 <h2>Neue Aufgabe</h2>
-<input id="taskInput" placeholder="Neue Aufgabe">
-<button id="addTask">Aufgabe hinzufügen</button>
-</section>
 
-<section class="card" style="grid-column:1/-1;">
+<input
+id="taskInput"
+placeholder="Neue Aufgabe eingeben">
+
+<button id="addTask">
+Aufgabe hinzufügen
+</button>
+
+</div>
+
+<div class="card full">
+
 <h2>Aufgaben</h2>
-<ul id="taskList"></ul>
+
+<ul id="taskList">
+</ul>
+
+</div>
+
 </section>
 
-</main>
+</div>
 
-<script type="module" src="./firebase.js"></script>
-<script type="module" src="./app.js"></script>
+<script type="module" src="firebase.js"></script>
+<script type="module" src="app.js"></script>
 
 <script>
-const list=document.getElementById("taskList");
-const counter=document.getElementById("taskCounter");
-const update=()=>counter.textContent=`${list.children.length} offene Aufgaben`;
-new MutationObserver(update).observe(list,{childList:true});
-update();
+const menu=document.getElementById("menuButton");
+const sidebar=document.getElementById("sidebar");
+menu.addEventListener("click",()=>sidebar.classList.toggle("collapsed"));
 </script>
 
 </body>
