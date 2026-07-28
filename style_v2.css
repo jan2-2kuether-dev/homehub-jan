@@ -658,3 +658,131 @@ button:active{
     margin-top:10px;
 
 }
+/* ==========================================================
+   BUILD 4B
+   TASKS + QUICK ACTIONS
+========================================================== */
+
+/* ---------- Aufgabenliste ---------- */
+
+#taskList,
+#completedTaskList{
+
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+
+    margin-top:8px;
+
+}
+
+/* ---------- Task Card ---------- */
+
+#taskList li,
+#completedTaskList li{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:16px;
+
+    padding:16px 18px;
+
+    background:rgba(255,255,255,.04);
+
+    border:1px solid var(--border);
+
+    border-radius:16px;
+
+    transition:all .25s ease;
+
+}
+
+#taskList li:hover,
+#completedTaskList li:hover{
+
+    transform:translateY(-3px);
+
+    border-color:rgba(79,141,247,.25);
+
+    box-shadow:0 10px 20px rgba(0,0,0,.22);
+
+}
+
+/* ---------- Text ---------- */
+
+#taskList li span,
+#completedTaskList li span{
+
+    flex:1;
+
+    font-weight:500;
+
+}
+
+/* ---------- Delete Button ---------- */
+
+#taskList li button,
+#completedTaskList li button{
+
+    width:42px;
+
+    height:42px;
+
+    padding:0;
+
+    border-radius:12px;
+
+    background:#ff5b6e;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    box-shadow:none;
+
+}
+
+#taskList li button:hover,
+#completedTaskList li button:hover{
+
+    background:#ff4157;
+
+    transform:scale(1.05);
+
+}
+
+/* ---------- Schnellaktionen ---------- */
+
+.card button{
+
+    width:100%;
+
+}
+
+.card button+button{
+
+    margin-top:12px;
+
+}
+
+/* ---------- Erledigt ---------- */
+
+#completedTaskList li{
+
+    opacity:.75;
+
+}
+
+#completedTaskList li span{
+
+    text-decoration:line-through;
+
+    color:var(--text-muted);
+
+}
