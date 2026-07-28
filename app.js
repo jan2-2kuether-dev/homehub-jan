@@ -6,6 +6,41 @@ const budgetValue=document.getElementById("budgetValue");
 const taskInput=document.getElementById("taskInput");
 const taskList=document.getElementById("taskList");
 
+function updateDashboard(){
+
+    const openTasks = taskList.children.length;
+
+    document.getElementById("taskCount").textContent = openTasks;
+
+    const completedTasks =
+        document.getElementById("completedTaskList").children.length;
+
+    document.getElementById("completedCount").textContent = completedTasks;
+
+    const total = openTasks + completedTasks;
+
+    const progress = total === 0
+        ? 0
+        : Math.round((completedTasks / total) * 100);
+
+    document.getElementById("progressFill").style.width = progress + "%";
+
+    document.getElementById("progressText").textContent =
+        progress + " % erledigt";
+
+}
+
+    const open = taskList.children.length;
+
+    document.getElementById("taskCount").textContent = open;
+
+    document.getElementById("completedCount").textContent = "0";
+
+    document.getElementById("progressFill").style.width = "0%";
+
+    document.getElementById("progressText").textContent = "0 % erledigt";
+
+}
 async function loadBudget(){
  const ref=doc(db,"settings","budget");
  const s=await getDoc(ref);
@@ -15,6 +50,19 @@ document.getElementById("saveBudget").onclick=async()=>{
  await setDoc(doc(db,"settings","budget"),{value:Number(budget.value)});
  budgetValue.textContent=budget.value+" €";
 };
+function updateDashboard(){
+
+    const open = taskList.children.length;
+
+    document.getElementById("taskCount").textContent = open;
+
+    document.getElementById("completedCount").textContent = "0";
+
+    document.getElementById("progressFill").style.width = "0%";
+
+    document.getElementById("progressText").textContent = "0 % erledigt";
+
+}
 
 async function loadTasks(){
  taskList.innerHTML="";
@@ -25,6 +73,7 @@ async function loadTasks(){
    li.querySelector("button").onclick=async()=>{await deleteDoc(doc(db,"tasks",d.id));loadTasks();};
    taskList.appendChild(li);
  });
+ updateDashboard();
 }
 document.getElementById("addTask").onclick=async()=>{
  if(!taskInput.value.trim())return;
