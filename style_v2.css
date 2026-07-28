@@ -959,3 +959,174 @@ button:active{
     display:none;
 
 }
+/* ==========================================================
+   BUILD 5B
+   MOBILE + ANIMATIONS
+========================================================== */
+
+/* ---------- Fade Animation ---------- */
+
+.card,
+.stat-card{
+
+    animation:fadeUp .45s ease;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ---------- Toast ---------- */
+
+#toastContainer{
+
+    position:fixed;
+
+    right:24px;
+
+    bottom:24px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+    z-index:9999;
+
+}
+
+.toast{
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-left:5px solid var(--accent);
+
+    color:var(--text);
+
+    padding:16px 18px;
+
+    border-radius:14px;
+
+    backdrop-filter:blur(18px);
+
+    box-shadow:var(--shadow);
+
+}
+
+/* ---------- Overlay ---------- */
+
+#mobileOverlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.45);
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:.3s;
+
+}
+
+#mobileOverlay.active{
+
+    opacity:1;
+
+    pointer-events:auto;
+
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width:900px){
+
+    .sidebar{
+
+        transform:translateX(-100%);
+
+    }
+
+    .sidebar.open{
+
+        transform:translateX(0);
+
+    }
+
+    .content{
+
+        margin-left:0;
+
+        padding:20px;
+
+    }
+
+    .dashboard{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .topbar{
+
+        flex-wrap:wrap;
+
+    }
+
+}
+
+/* ---------- Kleine Displays ---------- */
+
+@media (max-width:600px){
+
+    h1{
+
+        font-size:1.7rem;
+
+    }
+
+    .card{
+
+        padding:18px;
+
+    }
+
+    .stat-card{
+
+        padding:18px;
+
+    }
+
+    button{
+
+        width:100%;
+
+    }
+
+}
