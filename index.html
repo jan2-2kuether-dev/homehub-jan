@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HomeHub Jan</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header><h1>🏡 HomeHub Jan</h1><p>Firebase Edition</p></header>
+<main>
+<div class="card">
+<h2>Budget</h2>
+<input id="budget" type="number" placeholder="Budget">
+<button id="saveBudget">Budget speichern</button>
+<p>Budget: <span id="budgetValue">0 €</span></p>
+</div>
+<div class="card">
+<h2>Neue Aufgabe</h2>
+<input id="taskInput" placeholder="Neue Aufgabe">
+<button id="addTask">Aufgabe hinzufügen</button>
+</div>
+<div class="card">
+<h2>Aufgaben</h2>
+<ul id="taskList"></ul>
+</div>
+</main>
+<script type="module" src="./firebase.js"></script>
+<script type="module" src="./app.js"></script>
+</body></html>
