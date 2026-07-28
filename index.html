@@ -3,112 +3,127 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HomeHub 1.0</title>
+<title>HomeHub</title>
 <link rel="stylesheet" href="style.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<aside class="sidebar" id="sidebar">
-    <div class="logo">
-        <span class="logo-icon">🏠</span>
-        <span class="logo-text">HomeHub</span>
-    </div>
+<aside class="sidebar collapsed" id="sidebar">
+  <div class="logo">
+    <span>🏠</span>
+    <span class="logo-text">HomeHub</span>
+  </div>
 
-    <nav>
-        <a href="#" class="active">🏠 Dashboard</a>
-        <a href="#">📋 Aufgaben</a>
-        <a href="#">💰 Budget</a>
-        <a href="#">⚙ Einstellungen</a>
-    </nav>
+  <nav>
+    <a href="#" class="active">🏠 <span class="logo-text">Dashboard</span></a>
+    <a href="#">💰 <span class="logo-text">Budget</span></a>
+    <a href="#">📋 <span class="logo-text">Aufgaben</span></a>
+    <a href="#">✅ <span class="logo-text">Erledigt</span></a>
+    <a href="#">📈 <span class="logo-text">Fortschritt</span></a>
+  </nav>
 </aside>
 
-<div class="content">
+<main class="content">
 
 <header class="topbar">
-    <button id="menuButton">☰</button>
-
-    <div>
-        <h1>Willkommen, Jan 👋</h1>
-        <p>Deine persönliche Wohnungszentrale</p>
-    </div>
+<button id="menuButton">☰</button>
+<div>
+<h1>Willkommen zuhause 👋</h1>
+<p>Verwalte deine erste Wohnung an einem Ort.</p>
+</div>
 </header>
 
 <section class="dashboard">
-
 <div class="stat-card">
-    <h3>💰 Budget</h3>
-    <span id="budgetValue">0 €</span>
+<h3>Budget</h3>
+<span id="budgetValue">0 €</span>
 </div>
 
 <div class="stat-card">
-    <h3>📋 Aufgaben</h3>
-    <span id="taskCounter">0</span>
+<h3>Offene Aufgaben</h3>
+<span id="taskCount">0</span>
 </div>
 
 <div class="stat-card">
-    <h3>✅ Erledigt</h3>
-    <span id="doneCounter">0</span>
+<h3>Erledigt</h3>
+<span id="completedCount">0</span>
 </div>
 
 <div class="stat-card">
-    <h3>📈 Fortschritt</h3>
-    <span>0%</span>
+<h3>Fortschritt</h3>
+<div class="progress">
+<div class="progress-fill" id="progressFill" style="width:0%"></div>
 </div>
-
+<p id="progressText">0 % erledigt</p>
+</div>
 </section>
 
 <section class="grid">
 
 <div class="card">
+<h2>Budget</h2>
 
-<h2>Budget verwalten</h2>
-
+<label>Monatsbudget</label>
 <input id="budget" type="number" placeholder="Budget eingeben">
 
-<button id="saveBudget">
-Budget speichern
-</button>
-
+<button id="saveBudget">Budget speichern</button>
 </div>
 
 <div class="card">
-
 <h2>Neue Aufgabe</h2>
 
-<input
-id="taskInput"
-placeholder="Neue Aufgabe eingeben">
+<input id="taskInput" type="text" placeholder="Neue Aufgabe">
 
-<button id="addTask">
-Aufgabe hinzufügen
-</button>
+<select id="priority">
+<option value="high">🔴 Hoch</option>
+<option value="medium">🟡 Mittel</option>
+<option value="low">🟢 Niedrig</option>
+</select>
 
+<select id="category">
+<option>Allgemein</option>
+<option>Küche</option>
+<option>Bad</option>
+<option>Wohnzimmer</option>
+<option>Schlafzimmer</option>
+<option>Einkaufen</option>
+</select>
+
+<button id="addTask">Aufgabe hinzufügen</button>
 </div>
 
 <div class="card full">
-
 <h2>Aufgaben</h2>
 
 <ul id="taskList">
+<!-- Firebase erzeugt Aufgaben -->
 </ul>
+</div>
+
+<div class="card">
+<h2>Erledigte Aufgaben</h2>
+<ul id="completedTaskList"></ul>
+</div>
+
+<div class="card">
+<h2>Schnellaktionen</h2>
+
+<button>🧹 Wohnung aufräumen</button>
+<button>🛒 Einkauf planen</button>
+<button>💡 Budget prüfen</button>
 
 </div>
 
 </section>
 
-</div>
+<div id="toastContainer"></div>
 
-<script type="module" src="firebase.js"></script>
-<script type="module" src="app.js"></script>
+<div id="mobileOverlay"></div>
 
-<script>
-const menu=document.getElementById("menuButton");
-const sidebar=document.getElementById("sidebar");
-menu.addEventListener("click",()=>sidebar.classList.toggle("collapsed"));
-</script>
+</main>
+
+<script src="firebase.js" type="module"></script>
+<script src="app.js" type="module"></script>
 
 </body>
 </html>
