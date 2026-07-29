@@ -20,6 +20,8 @@ const budgetValue = document.getElementById("budgetValue");
 const taskInput = document.getElementById("taskInput");
 const taskList = document.getElementById("taskList");
 const completedTaskList = document.getElementById("completedTaskList");
+const priority = document.getElementById("priority");
+const category = document.getElementById("category");
 
 const taskCount = document.getElementById("taskCount");
 const completedCount = document.getElementById("completedCount");
@@ -158,10 +160,12 @@ async function addTask() {
 
     await addDoc(collection(db, "tasks"), {
 
-        title,
-        completed: false
+    title,
+    priority: priority.value,
+    category: category.value,
+    completed: false
 
-    });
+});
 
     taskInput.value = "";
 
