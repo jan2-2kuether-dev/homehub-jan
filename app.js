@@ -104,7 +104,25 @@ async function loadTasks() {
         const li = document.createElement("li");
 
 li.innerHTML = `
-    <span>${data.title}</span>
+    <div class="taskContent">
+
+    <span class="taskTitle">
+        ${data.title}
+    </span>
+
+    <div class="taskMeta">
+
+        <span class="priorityBadge">
+            ${data.priority ?? "-"}
+        </span>
+
+        <span class="categoryBadge">
+            ${data.category ?? "-"}
+        </span>
+
+    </div>
+
+</div>
 
     <div class="taskActions">
 
