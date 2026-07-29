@@ -1169,3 +1169,23 @@ button:active{
 
 }
 
+.priority-high{
+
+    background:#ff5b6e;
+    color:white;
+
+}
+
+.priority-medium{
+
+    background:#f4b942;
+    color:#1b1b1b;
+
+}
+
+.priority-low{
+
+    background:#39c67a;
+    color:white;
+
+}
