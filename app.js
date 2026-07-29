@@ -99,9 +99,33 @@ async function loadTasks() {
 
     snapshot.forEach(task => {
 
-        const data = task.data();
+       const data = task.data();
 
-        const li = document.createElement("li");
+let priorityLabel = "-";
+let priorityClass = "";
+
+switch (data.priority) {
+
+    case "high":
+        priorityLabel = "Hoch";
+        priorityClass = "priority-high";
+        break;
+
+    case "medium":
+        priorityLabel = "Mittel";
+        priorityClass = "priority-medium";
+        break;
+
+    case "low":
+        priorityLabel = "Niedrig";
+        priorityClass = "priority-low";
+        break;
+
+}
+
+}
+
+const li = document.createElement("li");
 
 li.innerHTML = `
     <div class="taskContent">
@@ -112,9 +136,9 @@ li.innerHTML = `
 
     <div class="taskMeta">
 
-        <span class="priorityBadge">
-            ${data.priority ?? "-"}
-        </span>
+<span class="priorityBadge ${priorityClass}">
+    ${priorityLabel}
+</span>
 
         <span class="categoryBadge">
             ${data.category ?? "-"}
