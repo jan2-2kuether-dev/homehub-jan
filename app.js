@@ -103,15 +103,41 @@ async function loadTasks() {
 
         const li = document.createElement("li");
 
-        li.innerHTML = `
-            <span>${data.title}</span>
-            <button class="deleteBtn"> 
-            ${data.completed ? "↺" : "☑️"}
+li.innerHTML = `
+    <span>${data.title}</span>
 
-    </button>
+    <div class="taskActions">
+
+        <button class="toggleBtn">
+            ${data.completed ? "↺" : "☑️"}
+        </button>
+
+        <button class="deleteBtn">
+            🗑️
+        </button>
+
+    </div>
+    
         `;
 
-      const actionButton = li.querySelector(".deleteBtn");
+      const actionButton = li.querySelector(".toggleBtn");
+      const deleteButton = li.querySelector(".deleteBtn");
+
+      deleteButton.addEventListener("click", async () => {
+
+    const confirmed = confirm(
+        "Möchtest du diese Aufgabe wirklich endgültig löschen?"
+    );
+
+    if (!confirmed) return;
+
+    await deleteDoc(
+        doc(db, "tasks", task.id)
+    );
+
+    await loadTasks();
+
+});
 
 if (data.completed) {
 
