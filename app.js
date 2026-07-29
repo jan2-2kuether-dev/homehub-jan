@@ -148,20 +148,25 @@ li.innerHTML = `
 
     <div class="taskActions">
 
-        <button class="toggleBtn">
-            ${data.completed ? "↺" : "☑️"}
-        </button>
+    <button class="toggleBtn">
+        ${data.completed ? "↺" : "☑️"}
+    </button>
 
-        <button class="deleteBtn">
-            🗑️
-        </button>
+    <button class="editBtn">
+        ✏️
+    </button>
 
-    </div>
+    <button class="deleteBtn">
+        🗑️
+    </button>
+
+</div>
     
         `;
 
       const actionButton = li.querySelector(".toggleBtn");
       const deleteButton = li.querySelector(".deleteBtn");
+      const editButton = li.querySelector(".editBtn");
 
       deleteButton.addEventListener("click", async () => {
 
