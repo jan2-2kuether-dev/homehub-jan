@@ -761,31 +761,6 @@ button:active{
 
 }
 
-/* ---------- Delete Button ---------- */
-
-#taskList li button,
-#completedTaskList li button{
-
-    width:42px;
-
-    height:42px;
-
-    padding:0;
-
-    border-radius:12px;
-
-    background:#ff5b6e;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    box-shadow:none;
-
-}
-
 #taskList li button:hover,
 #completedTaskList li button:hover{
 
@@ -1187,5 +1162,65 @@ button:active{
 
     background:#39c67a;
     color:white;
+
+}
+
+/* ==========================================================
+   BUILD 6
+   TASK ACTIONS
+========================================================== */
+
+.taskActions{
+
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+
+}
+
+.taskActions button{
+
+    width:42px;
+    height:42px;
+
+    padding:0;
+
+    border:none;
+
+    border-radius:12px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    box-shadow:none;
+
+    transition:.2s ease;
+
+}
+
+.taskActions button:hover{
+
+    transform:translateY(-2px);
+
+}
+
+/* HomeHub Farben */
+
+.toggleBtn{
+
+    background:var(--accent);
+
+}
+
+.editBtn{
+
+    background:#6d5dfc;
+
+}
+
+.deleteBtn{
+
+    background:#d15d7b;
 
 }
